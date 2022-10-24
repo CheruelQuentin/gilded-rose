@@ -6,6 +6,20 @@ class Item extends BaseItem {
     }
 
     updateQuality() {
-        // Implement this method based on item name
+        switch (this.name) {
+            case "Sulfuras" : {
+                this.quality = 80;
+                break;
+            }
+            case "Backstage passes" : {
+                this.timeLapsUpdateQuality()
+                break;
+            }
+            case "Aged Brie" : {
+                this.timeLapsUpdateQuality()
+                break;
+            }
+        }
     }
+
 }
