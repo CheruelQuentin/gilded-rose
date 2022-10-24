@@ -35,6 +35,16 @@ abstract class BaseItem {
     this.quality = Math.max(BaseItem.MIN_QUALITY, this.quality);
     this.quality = Math.min(BaseItem.MAX_QUALITY, this.quality);
   }
+
+  updateQualityBackStage() {
+    if (this.sellIn <= 5) {
+      return this.quality += 3;
+    } else if (this.sellIn <= 10) {
+      return this.quality += 2;
+    } else if (this.sellIn <= 0) {
+      return this.quality = 0;
+    }
+  }
 }
 
 export default BaseItem;
