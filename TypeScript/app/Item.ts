@@ -1,10 +1,5 @@
 abstract class Item {
-  constructor(
-    public name: string,
-    public sellIn: number,
-    public quality: number,
-    public basePrice: number
-  ) {
+  constructor(public name: string, public sellIn: number, public quality: number, public basePrice: number) {
     this.name = name
     this.sellIn = sellIn
     this.quality = quality
@@ -12,7 +7,7 @@ abstract class Item {
   }
 
   abstract update(): void
-  
+
   getValue() {
     return this.basePrice
   }

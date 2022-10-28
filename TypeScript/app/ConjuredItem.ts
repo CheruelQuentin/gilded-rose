@@ -2,7 +2,7 @@ import Item from "./Item"
 
 class ConjuredItem extends Item {
   constructor(name: string, sellIn: number, quality: number, basePrice: number) {
-    super(name, sellIn, quality,basePrice)
+    super(name, sellIn, quality, basePrice)
   }
 
   update(): void {

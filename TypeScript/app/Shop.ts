@@ -8,9 +8,8 @@ class Shop {
   updateInventory() {
     this.itemRepo.getInventory().forEach((item) => item.update())
   }
-  sellItem(type: string, quality:number) {
-    
-  }
+
+  sellItem(type: string, quality: number) {}
 }
 
 export default Shop
