@@ -1,8 +1,11 @@
-import Item from "./Item"
+import Item, { ItemType } from "./Item"
 
 class EventItem extends Item {
+  public type: ItemType
+
   constructor(name: string, sellIn: number, quality: number, basePrice: number) {
     super(name, sellIn, quality, basePrice)
+    this.type = ItemType.Event
   }
 
   update(): void {

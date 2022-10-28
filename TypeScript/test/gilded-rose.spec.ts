@@ -1,7 +1,10 @@
 import AgingItem from "../app/AgingItem"
 import ConjuredItem from "../app/ConjuredItem"
 import GenericItem from "../app/GenericItem"
+import Item from "../app/Item"
+import ItemRepository from "../app/ItemRepository"
 import LegendaryItem from "../app/LegendaryItem"
+import Shop from "../app/Shop"
 
 describe("Gilded Rose, GenericItem", () => {
   it("Should build", () => {
@@ -111,5 +114,23 @@ describe("Gilded Rose, AgingItem", () => {
     const item = new AgingItem("Aged Brie", 0, 50, 0)
     item.update()
     expect(item.quality).toBe(50)
+  })
+})
+
+describe("Gilded Rose, Shop", () => {
+  it("Should update items", () => {
+    const items: Item[] = [
+      new GenericItem("foo", 0, 1, 0),
+      new LegendaryItem("Sulfuras", 1, 80, 0),
+      new ConjuredItem("Conjured", 1, 50, 0),
+      new AgingItem("Aged Brie", 1, 49, 0),
+    ]
+    const shop = new Shop(new ItemRepository(items))
+    shop.updateInventory()
+
+    expect(items[0].quality).toBe(0)
+    expect(items[1].quality).toBe(80)
+    expect(items[2].quality).toBe(48)
+    expect(items[3].quality).toBe(50)
   })
 })
