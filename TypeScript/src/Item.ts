@@ -42,40 +42,10 @@ export default class Item {
     } 
 
 
-    updateQuality() {
+    update() {
       this._quality = this.decreaseQuality(this._quality);
       this._quality = this._sellIn <= 0 ? this.decreaseQuality(this._quality) : this._quality;
       return this._quality
     }
-
-    updateQualityForNormalItem() {
-      this._sellIn--;
-    }
-    updateQualityForSulfuras() {
-      this._quality = 80;
-      return this._quality;
-    }
-
-    updateQualityForConjured() {
-      if(this._sellIn === 5) {
-        this._quality -= 3
-      } else {
-        this.updateQuality();
-        this.updateQuality();
-      }
-      this._sellIn -=1;
-    }
-
-    updateQualityForAgedBrie() {
-      this._quality = this.increaseQuality(this._quality);
-      this.quality = this._sellIn < 0 ? this.increaseQuality(this._quality): this._quality;
-
-    }
-
-
-    
-  
-
-    
 }
 
