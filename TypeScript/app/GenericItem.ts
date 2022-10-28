@@ -16,3 +16,5 @@ class GenericItem extends Item {
     }
   }
 }
+
+export default GenericItem

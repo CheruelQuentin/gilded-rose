@@ -22,3 +22,5 @@ class EventItem extends Item {
     }
   }
 }
+
+export default EventItem

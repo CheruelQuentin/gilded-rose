@@ -9,3 +9,5 @@ class LegendaryItem extends Item {
     // Do nothing
   }
 }
+
+export default LegendaryItem

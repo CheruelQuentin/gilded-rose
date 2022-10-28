@@ -16,3 +16,5 @@ class AgingItem extends Item {
     }
   }
 }
+
+export default AgingItem

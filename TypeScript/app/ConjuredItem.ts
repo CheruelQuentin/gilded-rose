@@ -16,3 +16,5 @@ class ConjuredItem extends Item {
     }
   }
 }
+
+export default ConjuredItem
