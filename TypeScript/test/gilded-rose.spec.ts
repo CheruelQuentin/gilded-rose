@@ -157,4 +157,19 @@ describe("Gilded Rose, Shop", () => {
     expect(aging).toBe(items[3])
     expect(event).toBe(items[4])
   })
+
+  it("Should sell item", () => {
+    const items: Item[] = [
+      new GenericItem("foo", 0, 1, 0),
+      new LegendaryItem("Sulfuras", 1, 80, 0),
+      new ConjuredItem("Conjured", 1, 50, 0),
+      new AgingItem("Aged Brie", 1, 49, 0),
+      new EventItem("Backstage Pass", 1, 49, 0),
+    ]
+    const itemRepo = new ItemRepository(items)
+    const shop = new Shop(itemRepo)
+    shop.sellItem(ItemType.Conjured, 50)
+    expect(itemRepo.getInventory().length).toBe(4)
+    expect(() => itemRepo.findItem(ItemType.Conjured, 50)).toThrowError()
+  })
 })

@@ -9,7 +9,10 @@ class Shop {
     this.itemRepo.getInventory().forEach((item) => item.update())
   }
 
-  sellItem(type: string, quality: number) {}
+  sellItem(type: string, quality: number) {
+    const item = this.itemRepo.findItem(type, quality)
+    this.itemRepo.saveIntenvory(this.itemRepo.getInventory().filter((i) => i !== item))
+  }
 }
 
 export default Shop
