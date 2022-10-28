@@ -8,6 +8,9 @@ class Shop {
   updateInventory() {
     this.items.forEach((item) => item.update())
   }
+  sellItem(type: string, quality:number) {
+    
+  }
 }
 
 export default Shop
