@@ -1,12 +1,12 @@
-import Item from "./Item"
+import ItemRepository from "./ItemRepository"
 
 class Shop {
-  constructor(public items: Item[]) {
-    this.items = items
+  constructor(public itemRepo: ItemRepository) {
+    this.itemRepo = itemRepo
   }
 
   updateInventory() {
-    this.items.forEach((item) => item.update())
+    this.itemRepo.getInventory().forEach((item) => item.update())
   }
 }
 
