@@ -27,9 +27,15 @@ describe("Gilded Rose", () => {
   })
 
   it("Should update quality", () => {
-    const item = new GenericItem("foo", 0, 2)
+    const item = new GenericItem("foo", 1, 2)
     item.update()
     expect(item.quality).toBe(1)
+  })
+
+  it("Should update quality with sellIn below zero", () => {
+    const item = new GenericItem("foo", 0, 2)
+    item.update()
+    expect(item.quality).toBe(0)
   })
 
   it("Should not update quality below 0", () => {
@@ -51,7 +57,7 @@ describe("Gilded Rose", () => {
   })
 
   it("Should not update quality above 50", () => {
-    const item = new GenericItem("foo", 0, 51)
+    const item = new GenericItem("foo", 1, 51)
     item.update()
     expect(item.quality).toBe(50)
   })
