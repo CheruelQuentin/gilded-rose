@@ -1,6 +1,8 @@
+import ConjuredItem from "../app/ConjuredItem"
 import GenericItem from "../app/GenericItem"
+import LegendaryItem from "../app/LegendaryItem"
 
-describe("Gilded Rose", () => {
+describe("Gilded Rose, GenericItem", () => {
   it("Should build", () => {
     expect(true).toBe(true)
   })
@@ -60,5 +62,33 @@ describe("Gilded Rose", () => {
     const item = new GenericItem("foo", 1, 51)
     item.update()
     expect(item.quality).toBe(50)
+  })
+})
+
+describe("Gilded Rose, LegendaryItem", () => {
+  it("Should not update LegendaryItem", () => {
+    const item = new LegendaryItem("Sulfuras", 1, 80)
+    item.update()
+    expect(item.quality).toBe(80)
+  })
+})
+
+describe("Gilded Rose, ConjuredItem", () => {
+  it("Should update ConjuredItem", () => {
+    const item = new ConjuredItem("Conjured", 1, 50)
+    item.update()
+    expect(item.quality).toBe(48)
+  })
+
+  it("Should update ConjuredItem twice as fast after sellIn", () => {
+    const item = new ConjuredItem("Conjured", 0, 50)
+    item.update()
+    expect(item.quality).toBe(46)
+  })
+
+  it("Should not update ConjuredItem below 0", () => {
+    const item = new ConjuredItem("Conjured", 0, 1)
+    item.update()
+    expect(item.quality).toBe(0)
   })
 })
