@@ -4,12 +4,12 @@ abstract class Item {
     public sellIn: number,
     public quality: number,
   ) {
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
+    this.name = name
+    this.sellIn = sellIn
+    this.quality = quality
   }
 
-  update() {}
+  abstract update(): void
 }
 
-export default Item;
+export default Item
