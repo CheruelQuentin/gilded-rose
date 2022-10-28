@@ -22,7 +22,7 @@ describe('Gilded Rose', () => {
         expect(item.quality).toBe(2);
     })
     it('should reduce sellIn', () =>{
-        item.lowerSellIn()
+        item.updateQualityForNormalItem()
         expect(item.quality).toBe(0);
     })
 
