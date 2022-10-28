@@ -1,7 +1,8 @@
 import AgingItem from "../app/AgingItem"
 import ConjuredItem from "../app/ConjuredItem"
+import EventItem from "../app/EventItem"
 import GenericItem from "../app/GenericItem"
-import Item from "../app/Item"
+import Item, { ItemType } from "../app/Item"
 import ItemRepository from "../app/ItemRepository"
 import LegendaryItem from "../app/LegendaryItem"
 import Shop from "../app/Shop"
@@ -132,5 +133,28 @@ describe("Gilded Rose, Shop", () => {
     expect(items[1].quality).toBe(80)
     expect(items[2].quality).toBe(48)
     expect(items[3].quality).toBe(50)
+  })
+
+  it("Should find item by type", () => {
+    const items: Item[] = [
+      new GenericItem("foo", 0, 1, 0),
+      new LegendaryItem("Sulfuras", 1, 80, 0),
+      new ConjuredItem("Conjured", 1, 50, 0),
+      new AgingItem("Aged Brie", 1, 49, 0),
+      new EventItem("Backstage Pass", 1, 49, 0),
+    ]
+    const itemRepo = new ItemRepository(items)
+    const shop = new Shop(itemRepo)
+    const generic = itemRepo.findItem(ItemType.Generic, 1)
+    const Legendary = itemRepo.findItem(ItemType.Legendary, 80)
+    const conjured = itemRepo.findItem(ItemType.Conjured, 50)
+    const aging = itemRepo.findItem(ItemType.Aging, 49)
+    const event = itemRepo.findItem(ItemType.Event, 49)
+
+    expect(generic).toBe(items[0])
+    expect(Legendary).toBe(items[1])
+    expect(conjured).toBe(items[2])
+    expect(aging).toBe(items[3])
+    expect(event).toBe(items[4])
   })
 })
