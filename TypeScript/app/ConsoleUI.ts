@@ -7,21 +7,21 @@ class ConsoleUI {
     this.shop = new Shop(new ItemRepository([]))
   }
 
-  DisplayInventory(): void {
+  displayInventory(): void {
     this.shop.itemRepo.getInventory().forEach(item => {
       console.log(item.toString())
     })
   }
 
-  DisplayBalance(): void {
+  displayBalance(): void {
     console.log("Balance: " + this.shop.itemRepo.getInventory().reduce((acc, item) => acc + item.getValue(), 0))
   }
 
-  UpdateInventory(): void {
+  updateInventory(): void {
     this.shop.updateInventory()
   }
 
-  SellItem(type: string, quality: number): void {
+  sellItem(type: string, quality: number): void {
     this.shop.sellItem(type, quality)
   }
 }
