@@ -1,10 +1,10 @@
-import AgingItem from "../app/AgingItem"
-import ConjuredItem from "../app/ConjuredItem"
-import EventItem from "../app/EventItem"
-import GenericItem from "../app/GenericItem"
-import Item, { ItemType } from "../app/Item"
-import ItemRepository from "../app/ItemRepository"
-import LegendaryItem from "../app/LegendaryItem"
+import AgingItem from "../app/item/AgingItem"
+import ConjuredItem from "../app/item/ConjuredItem"
+import EventItem from "../app/item/EventItem"
+import GenericItem from "../app/item/GenericItem"
+import Item, { ItemType } from "../app/item/Item"
+import ItemRepository from "../app/item/ItemRepository"
+import LegendaryItem from "../app/item/LegendaryItem"
 import Shop from "../app/Shop"
 
 describe("Gilded Rose, GenericItem", () => {

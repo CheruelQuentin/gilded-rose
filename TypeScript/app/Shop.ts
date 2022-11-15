@@ -1,4 +1,4 @@
-import ItemRepository from "./ItemRepository"
+import ItemRepository from "./item/ItemRepository"
 
 class Shop {
   constructor(public itemRepo: ItemRepository) {
@@ -6,12 +6,12 @@ class Shop {
   }
 
   updateInventory() {
-    this.itemRepo.getInventory().forEach((item) => item.update())
+    this.itemRepo.getInventory().forEach(item => item.update())
   }
 
   sellItem(type: string, quality: number) {
     const item = this.itemRepo.findItem(type, quality)
-    this.itemRepo.saveIntenvory(this.itemRepo.getInventory().filter((i) => i !== item))
+    this.itemRepo.saveIntenvory(this.itemRepo.getInventory().filter(i => i !== item))
   }
 }
 
