@@ -1,6 +1,6 @@
 import ItemResponse from "./ItemResponse"
 interface ShopOutputBoundary {
-  DisplayInventory(inventory : ItemResponse[])
-  DisplayBalance(balance: number)
+  displayInventory(inventory : ItemResponse[])
+  displayBalance(balance: number)
 }
 export default ShopOutputBoundary

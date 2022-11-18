@@ -7,13 +7,13 @@ import ShopOutputBoundary from "./ShopOutputBoundary"
 
 class ShopInteractor extends ShopInputBoundary implements ItemsGateway, ShopOutputBoundary {
   
-  DisplayInventory(inventory: ItemResponse[]) {
+  displayInventory(inventory: ItemResponse[]) {
     throw new Error("Method not implemented.")
   }
-  DisplayBalance(balance: number) {
+  displayBalance(balance: number) {
     throw new Error("Method not implemented.")
   }
-  
+
   updateInventory(): void {
     throw new Error("Method not implemented.")
   }
