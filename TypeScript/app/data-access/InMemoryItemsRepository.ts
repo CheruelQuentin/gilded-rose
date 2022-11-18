@@ -14,7 +14,7 @@ class InMemoryItemsRepository implements ItemsGateway {
       new GenericItem("foo", 10, 10, 5),
       new GenericItem("bar", 1, 11, 5),
       new LegendaryItem("Sulfuras", 5, 80, 1500),
-      new LegendaryItem("Varus", 1, 80, 1500),
+      new LegendaryItem("Varus", 0, 80, 1500),
       new ConjuredItem("Snake venom", 4, 50, 32),
       new ConjuredItem("Mad genie lamp", 0, 50, 100),
       new AgingItem("Aged Brie", 23, 17, 3),
