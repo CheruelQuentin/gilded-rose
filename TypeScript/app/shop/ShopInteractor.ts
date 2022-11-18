@@ -1,9 +1,19 @@
 import Item from "../item/Item"
 import ItemsGateway from "../item/ItemsGateway"
+import ItemResponse from "./ItemResponse"
 import SellItemRequest from "./SellItemRequest"
 import ShopInputBoundary from "./ShopInputBoundary"
+import ShopOutputBoundary from "./ShopOutputBoundary"
 
-class ShopInteractor extends ShopInputBoundary implements ItemsGateway {
+class ShopInteractor extends ShopInputBoundary implements ItemsGateway, ShopOutputBoundary {
+  
+  DisplayInventory(inventory: ItemResponse[]) {
+    throw new Error("Method not implemented.")
+  }
+  DisplayBalance(balance: number) {
+    throw new Error("Method not implemented.")
+  }
+  
   updateInventory(): void {
     throw new Error("Method not implemented.")
   }
@@ -23,6 +33,7 @@ class ShopInteractor extends ShopInputBoundary implements ItemsGateway {
   saveInventory(items: Item[]): void {
     throw new Error("Method not implemented.")
   }
+  
 }
 
 export default ShopInteractor
