@@ -5,7 +5,7 @@ import GenericItem from "../app/item/GenericItem"
 import Item, { ItemType } from "../app/item/Item"
 import ItemRepository from "../app/item/ItemRepository"
 import LegendaryItem from "../app/item/LegendaryItem"
-import Shop from "../app/Shop"
+import Shop from "../app/shop/Shop"
 
 describe("Gilded Rose, GenericItem", () => {
   it("Should build", () => {

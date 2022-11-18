@@ -1,5 +1,5 @@
-import ItemRepository from "./item/ItemRepository"
-import Shop from "./Shop"
+import ItemRepository from "../item/ItemRepository"
+import Shop from "../shop/Shop"
 
 class ConsoleUI {
   shop: Shop

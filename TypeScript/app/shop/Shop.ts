@@ -1,4 +1,4 @@
-import ItemRepository from "./item/ItemRepository"
+import ItemRepository from "../item/ItemRepository"
 
 class Shop {
   constructor(public itemRepo: ItemRepository) {
