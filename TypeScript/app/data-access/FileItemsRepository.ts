@@ -17,3 +17,5 @@ class FileItemsRepository {
     fs.writeFileSync(this.path, JSON.stringify(items.getInventory()))
   }
 }
+
+export const FileItemsRepository
