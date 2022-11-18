@@ -1,4 +1,3 @@
-import FileItemsRepository from "../data-access/FileItemsRepository"
 import Item from "../item/Item"
 import ItemsGateway from "../item/ItemsGateway"
 import ItemResponse from "./ItemResponse"
@@ -7,11 +6,10 @@ import ShopInputBoundary from "./ShopInputBoundary"
 import ShopOutputBoundary from "./ShopOutputBoundary"
 
 class ShopInteractor implements ItemsGateway, ShopInputBoundary, ShopOutputBoundary {
-  fileItemsRepository: ItemsGateway
   items: Item[]
   balance: number
-  constructor() {
-    this.fileItemsRepository = new FileItemsRepository()
+  constructor(private itemsGateway: ItemsGateway) {
+    this.itemsGateway = itemsGateway
     this.items = []
     this.balance = 0
   }
@@ -38,7 +36,7 @@ class ShopInteractor implements ItemsGateway, ShopInputBoundary, ShopOutputBound
   }
 
   getInventory(): Item[] {
-    this.items = this.fileItemsRepository.getInventory()
+    this.items = this.itemsGateway.getInventory()
     return this.items
   }
 
@@ -51,7 +49,7 @@ class ShopInteractor implements ItemsGateway, ShopInputBoundary, ShopOutputBound
   }
 
   saveInventory(items: Item[]): void {
-    this.fileItemsRepository.saveInventory(items)
+    this.itemsGateway.saveInventory(items)
   }
 }
 
