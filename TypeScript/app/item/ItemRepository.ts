@@ -1,10 +1,9 @@
-import FileItemsRepository from "../data-access/FileItemsRepository"
 import Item from "./Item"
 
 class ItemRepository {
   private items: Item[]
-  constructor() {
-    this.items = new FileItemsRepository().getInventory()
+  constructor(items: Item[]) {
+    this.items = items
   }
 
   getInventory(): Item[] {
