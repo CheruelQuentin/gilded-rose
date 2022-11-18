@@ -4,7 +4,7 @@ import Shop from "./Shop"
 class ConsoleUI {
   shop: Shop
   constructor() {
-    this.shop = new Shop(new ItemRepository([]))
+    this.shop = new Shop(new ItemRepository())
   }
 
   displayInventory(): void {
@@ -25,3 +25,5 @@ class ConsoleUI {
     this.shop.sellItem(type, quality)
   }
 }
+
+export default ConsoleUI
