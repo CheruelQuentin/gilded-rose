@@ -7,10 +7,9 @@ class FileItemsRepository {
     this.path = path
   }
 
-  loadItemsFromFiles(): ItemRepository {
-    const items: Item[] = []
-    const fileContents = fs.readFileSync(this.path, "utf8")
-    return new ItemRepository(JSON.parse(fileContents))
+  loadItemsFromFiles(): Item[] {
+    const fileContents: Item[] = JSON.parse(fs.readFileSync(this.path, "utf8"))
+    return fileContents
   }
 
   saveItemsToFile(items: ItemRepository): void {
@@ -18,4 +17,4 @@ class FileItemsRepository {
   }
 }
 
-export const FileItemsRepository
+export default FileItemsRepository
