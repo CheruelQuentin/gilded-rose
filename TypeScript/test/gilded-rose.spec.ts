@@ -1,11 +1,11 @@
+import InMemoryItemsRepository from "../app/data-access/InMemoryItemsRepository"
 import AgingItem from "../app/item/AgingItem"
 import ConjuredItem from "../app/item/ConjuredItem"
-import EventItem from "../app/item/EventItem"
 import GenericItem from "../app/item/GenericItem"
-import Item, { ItemType } from "../app/item/Item"
-import ItemRepository from "../app/item/ItemRepository"
+import { ItemType } from "../app/item/Item"
 import LegendaryItem from "../app/item/LegendaryItem"
-import Shop from "../app/shop/Shop"
+import SellItemRequest from "../app/shop/SellItemRequest"
+import ShopInteractor from "../app/shop/ShopInteractor"
 
 describe("Gilded Rose, GenericItem", () => {
   it("Should build", () => {
@@ -118,58 +118,52 @@ describe("Gilded Rose, AgingItem", () => {
   })
 })
 
-describe("Gilded Rose, Shop", () => {
-  it("Should update items", () => {
-    const items: Item[] = [
-      new GenericItem("foo", 0, 1, 0),
-      new LegendaryItem("Sulfuras", 1, 80, 0),
-      new ConjuredItem("Conjured", 1, 50, 0),
-      new AgingItem("Aged Brie", 1, 49, 0),
-    ]
-    const shop = new Shop(new ItemRepository(items))
-    shop.updateInventory()
+describe("Gilded Rose, ShopInteractor", () => {
+  let inMemoryItemsRepository: InMemoryItemsRepository
+  let shop: ShopInteractor
 
-    expect(items[0].quality).toBe(0)
-    expect(items[1].quality).toBe(80)
-    expect(items[2].quality).toBe(48)
-    expect(items[3].quality).toBe(50)
+  beforeEach(() => {
+    inMemoryItemsRepository = new InMemoryItemsRepository()
+    shop = new ShopInteractor(inMemoryItemsRepository)
+  })
+
+  it("Should update inventory", () => {
+    shop.updateInventory()
+    const items = shop.getInventory()
+    expect(items[0].quality).toBe(9)
+    expect(items[1].quality).toBe(10)
+    expect(items[2].quality).toBe(80)
+    expect(items[3].quality).toBe(80)
+    expect(items[4].quality).toBe(48)
+    expect(items[5].quality).toBe(46)
+    expect(items[6].quality).toBe(18)
+    expect(items[7].quality).toBe(19)
+    expect(items[8].quality).toBe(50)
+    expect(items[9].quality).toBe(0)
   })
 
   it("Should find item by type", () => {
-    const items: Item[] = [
-      new GenericItem("foo", 0, 1, 0),
-      new LegendaryItem("Sulfuras", 1, 80, 0),
-      new ConjuredItem("Conjured", 1, 50, 0),
-      new AgingItem("Aged Brie", 1, 49, 0),
-      new EventItem("Backstage Pass", 1, 49, 0),
-    ]
-    const itemRepo = new ItemRepository(items)
-    const shop = new Shop(itemRepo)
-    const generic = itemRepo.findItem(ItemType.Generic, 1)
-    const Legendary = itemRepo.findItem(ItemType.Legendary, 80)
-    const conjured = itemRepo.findItem(ItemType.Conjured, 50)
-    const aging = itemRepo.findItem(ItemType.Aging, 49)
-    const event = itemRepo.findItem(ItemType.Event, 49)
+    const generic = shop.findItem(ItemType.Generic, 10)
+    const Legendary = shop.findItem(ItemType.Legendary, 80)
+    const conjured = shop.findItem(ItemType.Conjured, 50)
+    const aging = shop.findItem(ItemType.Aging, 17)
+    const event = shop.findItem(ItemType.Event, 49)
+
+    const items = shop.getInventory()
 
     expect(generic).toBe(items[0])
-    expect(Legendary).toBe(items[1])
-    expect(conjured).toBe(items[2])
-    expect(aging).toBe(items[3])
-    expect(event).toBe(items[4])
+    expect(Legendary).toBe(items[2])
+    expect(conjured).toBe(items[4])
+    expect(aging).toBe(items[6])
+    expect(event).toBe(items[8])
   })
 
   it("Should sell item", () => {
-    const items: Item[] = [
-      new GenericItem("foo", 0, 1, 0),
-      new LegendaryItem("Sulfuras", 1, 80, 0),
-      new ConjuredItem("Conjured", 1, 50, 0),
-      new AgingItem("Aged Brie", 1, 49, 0),
-      new EventItem("Backstage Pass", 1, 49, 0),
-    ]
-    const itemRepo = new ItemRepository(items)
-    const shop = new Shop(itemRepo)
-    shop.sellItem(ItemType.Conjured, 50)
-    expect(itemRepo.getInventory().length).toBe(4)
-    expect(() => itemRepo.findItem(ItemType.Conjured, 50)).toThrowError()
+    const length = shop.getInventory().length
+    shop.sellItem(new SellItemRequest(ItemType.Generic, 10))
+
+    expect(shop.getInventory().length).toBe(length - 1)
+    expect(() => shop.findItem(ItemType.Generic, 10)).toThrowError()
+    expect(shop.getBalance()).toBe(5)
   })
 })

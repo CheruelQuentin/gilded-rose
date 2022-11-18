@@ -10,8 +10,8 @@ class ConsoleView implements ShopOutputBoundary {
     this.shopOutputBoundary.displayInventory(inventory)
   }
 
-  displayBalance(balance: number) {
-    this.shopOutputBoundary.displayBalance(balance)
+  displayBalance() {
+    this.shopOutputBoundary.displayBalance()
   }
 }
 

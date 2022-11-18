@@ -6,12 +6,16 @@ import ShopInputBoundary from "./ShopInputBoundary"
 import ShopOutputBoundary from "./ShopOutputBoundary"
 
 class ShopInteractor implements ItemsGateway, ShopInputBoundary, ShopOutputBoundary {
-  items: Item[]
-  balance: number
+  private items: Item[]
+  private balance: number
   constructor(private itemsGateway: ItemsGateway) {
     this.itemsGateway = itemsGateway
-    this.items = []
+    this.items = this.itemsGateway.getInventory()
     this.balance = 0
+  }
+
+  getBalance(): number {
+    return this.balance
   }
 
   displayInventory(inventory: ItemResponse[]) {
@@ -20,8 +24,8 @@ class ShopInteractor implements ItemsGateway, ShopInputBoundary, ShopOutputBound
     })
   }
 
-  displayBalance(balance: number) {
-    console.log(balance)
+  displayBalance() {
+    console.log(this.balance)
   }
 
   updateInventory(): void {
@@ -36,12 +40,11 @@ class ShopInteractor implements ItemsGateway, ShopInputBoundary, ShopOutputBound
   }
 
   getInventory(): Item[] {
-    this.items = this.itemsGateway.getInventory()
     return this.items
   }
 
   findItem(type: string, quality: number): Item {
-    const itemReturn = this.items.find(item => item.type.toString() === type && item.quality === quality)
+    const itemReturn = this.items.find(item => item.type === type && item.quality === quality)
     if (itemReturn === undefined) {
       throw new Error("Item not found")
     }
