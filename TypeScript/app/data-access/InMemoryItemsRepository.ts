@@ -1,20 +1,19 @@
 import Item from "../item/Item"
-import ItemRepository from "../item/ItemRepository"
-import FileItemsRepository from "./FileItemsRepository"
+import ItemsGateway from "../item/ItemsGateway"
 
-class InMemoryItemsRepository {
-  fileItemRepository: FileItemsRepository
-  constructor(private path: string) {
-    this.path = path
-    this.fileItemRepository = new FileItemsRepository(this.path)
+class InMemoryItemsRepository implements ItemsGateway {
+  constructor() {}
+
+  getInventory(): Item[] {
+    throw new Error("Method not implemented.")
   }
 
-  getItems(): Item[] {
-    return this.fileItemRepository.loadItemsFromFiles()
+  findItem(type: string, quality: number): Item {
+    throw new Error("Method not implemented.")
   }
 
-  saveItemRepository(itemRepository: ItemRepository): void {
-    this.fileItemRepository.saveItemsToFile(itemRepository)
+  saveInventory(items: Item[]): void {
+    throw new Error("Method not implemented.")
   }
 }
 

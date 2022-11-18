@@ -1,10 +1,10 @@
-import InMemoryItemsRepository from "../data-access/InMemoryItemsRepository"
+import FileItemsRepository from "../data-access/FileItemsRepository"
 import Item from "./Item"
 
 class ItemRepository {
   private items: Item[]
   constructor() {
-    this.items = new InMemoryItemsRepository("inv.json").getItems()
+    this.items = new FileItemsRepository().getInventory()
   }
 
   getInventory(): Item[] {

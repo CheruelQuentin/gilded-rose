@@ -1,19 +1,30 @@
 import * as fs from "fs"
 import Item from "../item/Item"
-import ItemRepository from "../item/ItemRepository"
+import ItemsGateway from "../item/ItemsGateway"
 
-class FileItemsRepository {
-  constructor(private path: string) {
-    this.path = path
+class FileItemsRepository implements ItemsGateway {
+  items: Item[]
+  path: string
+  constructor() {
+    this.path = "./inv.json"
+    this.items = []
   }
 
-  loadItemsFromFiles(): Item[] {
+  getInventory(): Item[] {
     const fileContents: Item[] = JSON.parse(fs.readFileSync(this.path, "utf8"))
     return fileContents
   }
 
-  saveItemsToFile(items: ItemRepository): void {
-    fs.writeFileSync(this.path, JSON.stringify(items.getInventory()))
+  findItem(type: string, quality: number): Item {
+    const itemReturn = this.items.find(item => item.type.toString() === type && item.quality === quality)
+    if (itemReturn === undefined) {
+      throw new Error("Item not found")
+    }
+    return itemReturn
+  }
+
+  saveInventory(items: Item[]): void {
+    fs.writeFileSync(this.path, JSON.stringify(items))
   }
 }
 
